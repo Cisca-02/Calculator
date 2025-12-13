@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(./images/matrix.jpg);
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    flex: 0;
+    margin-top: 50px;
+    padding: 20px 30px;
+    width: 600px;
+    background-color: black;
+    box-sizing: border-box;
+    border: 3px solid white;
+}
+
+.display-para {
+    padding: 10px 20px;
+    background-color: gray;
+    color: black;
+    align-content: end;
+    height: 100px;
+    width: 100%;
+    margin: 5px;
+}
+
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex: 0;
+    padding: 20px;
+    gap: 20px 8px;
+    width: 600px;
+    height: 1200px;
+    background-color: black;
+    box-sizing: border-box;
+    border: 3px solid white;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+    width: calc(90%/4);
+    box-sizing: border-box;
+}
