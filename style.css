@@ -48,4 +48,31 @@ button {
     padding: 20px 10px;
     width: calc(90%/4);
     box-sizing: border-box;
+    border-radius: 12%;
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.number {
+    background-color: rgb(89, 89, 89);
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.option {
+    background-color: rgb(243, 74, 74);
+    color: white;
+    font-size: large;
+    font-weight: bold;
+}
+
+.void {
+    background-color: purple;
+}
+
+.operation {
+    background-color:aqua;
+    color: white;
+    font-size: large;
+    font-weight: bold;
 }
