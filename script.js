@@ -31,12 +31,18 @@ const operate = (num1, num2, operation) => {
     }
 }
 
+//----MEMORIA CALCULATOR----
+let num1 = "";
+let num2 = "";
+let op = "";
+
 
 //----DOM MANIPULATION----
 //In questa sezione inseriamo il codice che permette di modificare elementi del DOM a partire da input dati dall'utente
 //come ad esempio il caso di digitare dei bottoni
 
-//Obiettivo: quando l'utente digita dei numeri, questi vengono proiettati sul display
+//OBIETTIVO: quando l'utente digita dei numeri, questi vengono proiettati sul display
+
 //Funzione: prende in input un numero e lo aggiunge al paragrafo del display
 const showOnDisplay = n => {
     //seleziono il paragrafo del display
@@ -46,5 +52,11 @@ const showOnDisplay = n => {
     display.textContent += n;
 } 
 
-//test: 
-showOnDisplay("CIAO");
+//Aggiungo un listener ai button di tipo number, cosi che quando vengono digitati, chiamo la funzione showOnDisplay
+//Seleziono tutti i buttons di classe ".number" e aggiungo un listener a ognuno
+const numbers = document.querySelectorAll(".number");
+numbers.forEach(num => num.addEventListener("click", () => {
+    num1 += num.textContent;
+    showOnDisplay(num.textContent);
+}));
+
