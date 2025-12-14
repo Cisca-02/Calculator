@@ -212,3 +212,10 @@ const options = document.querySelectorAll(".option");
 options.forEach(option => option.addEventListener("click", () => {
     resetCalculator();
 }));
+
+//-------------------------------------------------------------------------------------------
+const bonus = document.querySelectorAll(".void");
+bonus.forEach(b => b.addEventListener("click", () => {
+    showOnDisplay("Cisca best dev");
+    resultDisplayed = true;
+}))
