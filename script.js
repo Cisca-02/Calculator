@@ -39,6 +39,43 @@ let op = "";
 let resultDisplayed = false;
 
 
+
+//----FUNZIONI DI UTILITA'----
+
+//Funzione: stampa un errore
+const printError = () => {
+    if(num1 == ""){
+        return;
+    }else{
+        num1 = "";
+        showOnDisplay("ERROR");
+        resultDisplayed = true;
+    }
+}
+
+//Funzione: stampa risultato
+const printResult = () => {
+    num2 = parseFloat(tempNum);
+    
+    //pulisco lo schermo
+    tempNum = "";
+    showOnDisplay("");
+
+    //operate()
+    let result = operate(num1, num2, op);
+    showOnDisplay(result);
+    tempNum = result;
+    num1 = "";
+    num2 = "";
+    op = "";
+    return result;
+}
+
+
+
+
+
+
 //----DOM MANIPULATION----
 //In questa sezione inseriamo il codice che permette di modificare elementi del DOM a partire da input dati dall'utente
 //come ad esempio il caso di digitare dei bottoni
@@ -78,7 +115,7 @@ numbers.forEach(num => num.addEventListener("click", () => {
 
 //----------------------------------------------------------------------------------------
 
-//OBIETTIVO: quando l'utente digita button operation, il calculator svolge l'operazione o restituisce uno status message
+//OBIETTIVO: quando l'utente digita button operation, il calculator svolge l'operazione o restituisce uno error message
 
 //Quando schiaccio un pulsante operazione, possono verificarsi vari casi:
 
@@ -104,36 +141,74 @@ const operations = document.querySelectorAll(".operation");
 operations.forEach(operation => operation.addEventListener("click", () => {
     //CASO 1:
     if(tempNum == ""){
-        if(num1 == ""){
-            return;
-        }else{
-            num1 = "";
-            showOnDisplay("ERROR");
-            resultDisplayed = true;
-        }
+        printError();
     //CASO 2: 
-    }else if(num1 == ""){
+    }else if(num1 === ""){
         num1 = parseFloat(tempNum);
         op = operation.textContent;
         tempNum = "";
         showOnDisplay("");
     //CASO 3:
     }else{
-        num2 = parseFloat(tempNum);
-        //pulisco lo schermo
+        //stampa risultato
+        let result = printResult();
+
+        //salvo il risultato in num1 per la prossima operazione
         tempNum = "";
-        showOnDisplay("");
-
-        //operate()
-        let result = operate(num1, num2, op);
-        showOnDisplay(result);
-
-        //salvo il risultato in num1 per la prossima operazione, pulisco num2
         num1 = result;
-        num2 = "";
         op = operation.textContent;
         resultDisplayed = true;
     }
 }));
 
 //-------------------------------------------------------------------------------------------------
+
+//OBIETTIVO: quando l'utente digita il button result, eseguo l'op e stampo il risultato, o restituisco un error message
+
+//Quando schiaccio il pulsante result possono verificarsi vari casi:
+
+//CASO 1.a: quando tempNum è uguale a "" (quindi il display è vuoto) allora ignoro l'input o stampo un messaggio di errore
+//in caso di bad format. NOTA BENE: questo caso è gestito dalla funzione printError()
+
+//CASO 1.b: quando tempNum non è vuoto (neanche il display quindi), ma in num1 non è ancora stato salvato alcun parametro
+//in questo caso, stampo ancora un messaggio di errore, quindi posso fondere i due casi nel primo
+
+
+//CASO 2: quando num1 non è vuoto, quindi anche op non è vuoto, allora salvo il contenuto di tempNum in num2 e chiamo 
+//operate(). Dopodichè stampo il risultato e lo inserisco in tempNum. 
+
+
+const resultBtn = document.querySelector(".result");
+resultBtn.addEventListener("click", () => {
+    //CASO 1:
+    if(num1 == ""){
+        printError();
+    }
+    //CASO 2:
+    else{
+        //stampa risultato
+        printResult();
+    }
+});
+
+//--------------------------------------------------------------------------------------------------
+
+//OBIETTIVO: quando l'utente digita il bottone AC o C (option buttons) allora chiamo la funzione clear, che resetta
+//lo stato del calculator a quello iniziale, cioè tempNum, num1, num2, op vengono posti a "" cosi come il display
+//che viene svuotato
+
+
+//Funzione: resetta lo stato del calculator
+const resetCalculator = () => {
+    tempNum = "";
+    num1 = "";
+    num2 = "";
+    op = "";
+    showOnDisplay("");
+}
+
+
+const options = document.querySelectorAll(".option");
+options.forEach(option => option.addEventListener("click", () => {
+    resetCalculator();
+}));

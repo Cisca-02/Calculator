@@ -57,7 +57,8 @@ button {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-.number {
+.number ,
+.result {
     background-color: rgb(89, 89, 89);
     color: white;
     font-size: large;
