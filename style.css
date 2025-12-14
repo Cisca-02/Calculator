@@ -67,18 +67,21 @@ button {
 
 .option {
     background-color: rgb(243, 74, 74);
-    color: white;
+    color: black;
     font-size: large;
     font-weight: bold;
 }
 
 .void {
     background-color: purple;
+    color: white;
+    font-size: large;
+    font-weight: bold;
 }
 
 .operation {
     background-color:aqua;
-    color: white;
+    color: black;
     font-size: large;
     font-weight: bold;
 }
